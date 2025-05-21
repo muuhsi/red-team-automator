@@ -1,26 +1,28 @@
 # Red Team Task Automator 🤖💻
 
-A Python-based red team assistant tool that uses OpenAI to suggest practical command-line techniques for real-world penetration testing scenarios.
+A Python-based automation tool that uses OpenAI's GPT API to suggest command-line techniques, tools, and methodologies for red team operations like enumeration, privilege escalation, lateral movement, and more.
 
 ---
 
 ## 🔥 Features
 
-- Accepts red team task descriptions as input
-- Uses GPT to generate useful commands, tools, or methodologies
-- Helps with reconnaissance, privilege escalation, enumeration, and more
-- Fast and easy CLI interface for quick suggestions
+- Accepts red team scenarios as input
+- Uses OpenAI's GPT API to generate relevant commands
+- Helps with reconnaissance, exploitation, post-exploitation
+- Simple CLI interface for fast suggestions
+- Great for learning or speeding up red team workflows
 
 ---
 
 ## 📁 Project Structure
 
+```
 red-team-automator/
 ├── red_team_automator.py
 ├── requirements.txt
 ├── README.md
-└── venv/ (optional, not uploaded to GitHub)
-
+└── .env (optional, to store your API key)
+```
 
 ---
 
@@ -34,72 +36,92 @@ cd red-team-automator
 python3 -m venv venv
 source venv/bin/activate
 pip install -r requirements.txt
-
-📦 Requirements
-
-    Python 3.7+
-
-    openai
-
-Install with:
-
-pip install -r requirements.txt
-
-To manually install:
-
-pip install openai
-
-🔑 API Key Setup
-
-You need an OpenAI API key to use this tool.
-Linux/macOS:
-
-export OPENAI_API_KEY="your-api-key-here"
-
-Windows (PowerShell):
-
-$env:OPENAI_API_KEY="your-api-key-here"
-
-You can get an API key from: https://platform.openai.com/account/api-keys
-⚙️ Usage
-
-After setting the API key:
-
-python red_team_automator.py
-
-Example input:
-
-Enter red team task or scenario: Privilege escalation on a Linux target
-
-Expected output:
-
-Suggested commands:
-- sudo -l
-- find / -perm -4000 2>/dev/null
-- LinPEAS or LinEnum tools
-
-🖼️ Screenshot (Optional)
-
-    (Add a screenshot or terminal output here if available)
-
-🤝 Contributing
-
-Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
-🧾 License
-
-This project is licensed under the MIT License.
-👨‍💻 Author
-
-    GitHub: @muuhsi
-
+```
 
 ---
 
-✅ You can now copy this entire content and:
+## 📦 Requirements
 
-1. Paste it into a file named `README.md` in your project folder.
-2. Add and commit it:
-   ```bash
-   git add README.md
-   git commit -m "Add README.md"
-   git push
+- Python 3.7+
+- openai
+- dotenv (optional, if using `.env` file)
+
+To install manually:
+
+```bash
+pip install openai python-dotenv
+```
+
+---
+
+## 🔑 API Key Setup
+
+You need an OpenAI API key to use this tool.
+
+### Option 1: Set it in your terminal session
+
+**Linux/macOS:**
+```bash
+export OPENAI_API_KEY="your-api-key"
+```
+
+**Windows (PowerShell):**
+```powershell
+$env:OPENAI_API_KEY="your-api-key"
+```
+
+### Option 2: Store it in a `.env` file (optional)
+
+Create a `.env` file in the same directory and add:
+
+```
+OPENAI_API_KEY=your-api-key
+```
+
+---
+
+## ⚙️ Usage
+
+```bash
+python red_team_automator.py
+```
+
+You'll be prompted to enter a red team task:
+
+```
+Enter red team task or scenario: Active Directory enumeration
+```
+
+Example output:
+
+```
+Suggested commands:
+- nmap -p 389,636,3268,3269 --script ldap* <target>
+- ldapsearch -x -h <DC_IP> -b "dc=example,dc=com"
+- Use tools: BloodHound, SharpHound
+```
+
+---
+
+## 📸 Screenshot (Optional)
+
+> *(You can add a screenshot of terminal usage here if you'd like)*
+
+---
+
+## ⚠️ Note
+
+- This tool **does not execute commands**, it only provides suggestions.
+- Make sure to follow legal and ethical guidelines during real-world usage.
+
+---
+
+## 🧾 License
+
+This project is licensed under the MIT License.
+
+---
+
+## 👨‍💻 Author
+
+- GitHub: [@muuhsi](https://github.com/muuhsi)
