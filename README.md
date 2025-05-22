@@ -103,12 +103,6 @@ Suggested commands:
 
 ---
 
-## 📸 Screenshot (Optional)
-
-> *(You can add a screenshot of terminal usage here if you'd like)*
-
----
-
 ## ⚠️ Note
 
 - This tool **does not execute commands**, it only provides suggestions.
