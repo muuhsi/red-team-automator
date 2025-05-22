@@ -1,35 +1,32 @@
 import os
-import openai
+from dotenv import load_dotenv
+from openai import OpenAI
 
-def generate_red_team_advice(task_description):
-    openai.api_key = os.getenv("OPENAI_API_KEY")
-    
-    prompt = f"""
-    You are a red team assistant. For the given task, provide relevant commands, techniques, or tools to use.
+# Load your API key from the .env file
+load_dotenv()
+api_key = os.getenv("OPENAI_API_KEY")
 
-    Task: {task_description}
+# Initialize OpenAI client
+client = OpenAI(api_key=api_key)
 
-    Reply with concise and practical suggestions.
-    """
-    
-    response = openai.Completion.create(
-        engine="text-davinci-003",
-        prompt=prompt,
-        max_tokens=150,
-        temperature=0.7,
-        n=1,
-        stop=None
+def generate_red_team_advice(task):
+    response = client.chat.completions.create(
+        model="gpt-3.5-turbo",  # You can change to "gpt-4" if you have access
+        messages=[
+            {"role": "system", "content": "You are an expert red team analyst."},
+            {"role": "user", "content": f"Provide red team techniques and tools for: {task}"}
+        ]
     )
-    
-    advice = response.choices[0].text.strip()
-    return advice
+    return response.choices[0].message.content.strip()
 
 def main():
-    print("=== Red Team Task Automator ===")
+    print("\n=== Red Team Task Automator ===")
     task = input("Enter red team task or scenario: ")
+    print("\nGenerating red team advice...\n")
     advice = generate_red_team_advice(task)
-    print("\nSuggested commands/techniques:\n")
+    print("💡 Advice:\n")
     print(advice)
 
 if __name__ == "__main__":
     main()
+
